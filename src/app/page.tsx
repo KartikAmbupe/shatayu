@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import { Carousel } from 'react-responsive-carousel';
 import { ShoppingBagIcon } from '@heroicons/react/24/solid';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -16,7 +16,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const currentWord = words[wordIndex];
-    let typeSpeed = isDeleting ? 40 : 80;
+    const typeSpeed = isDeleting ? 40 : 80;
 
     const timer = setTimeout(() => {
       const updatedCharIndex = isDeleting ? charIndex - 1 : charIndex + 1;
@@ -24,10 +24,8 @@ export default function HomePage() {
       setCharIndex(updatedCharIndex);
 
       if (!isDeleting && updatedCharIndex === currentWord.length) {
-        // Pause before deleting
         setTimeout(() => setIsDeleting(true), 1000);
       } else if (isDeleting && updatedCharIndex === 0) {
-        // Move to next word
         setIsDeleting(false);
         setWordIndex((prev) => (prev + 1) % words.length);
       }
@@ -35,8 +33,6 @@ export default function HomePage() {
 
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, wordIndex]);
-
-
 
   const products = [
     {
@@ -47,7 +43,7 @@ export default function HomePage() {
       ingredients: 'Awla Extract, Stevia, Shatavari, Tulsi Ashwagandha, Amruta, Jesht Madha, Hirda, Added Class 2 Preservatives',
       whatsapp: 'https://wa.me/919359231049?text=I would like to order Awla Juice'
     },
-    { 
+    {
       name: 'Sweetol - Sugar free drops',
       price: '₹320',
       image: '/images/awla-juice.png',
@@ -64,68 +60,98 @@ export default function HomePage() {
       whatsapp: 'https://wa.me/919359231049?text=I would like to order Cookies'
     },
   ];
-
+  
   const closePopup = () => setSelectedProduct(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <main>
-      <nav className="fixed top-0 w-full bg-green-800/60 backdrop-blur-sm text-white shadow z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="text-2xl flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}>
-            <Image src="/images/shatayu-logo.png" alt="Shatayu Logo" width={40} height={40} className="w-10 h-10" />
+    <main className="text-gray-100 bg-gray-900">
+      {/* Navbar */}
+
+  `    <nav className="fixed top-0 w-full bg-green-800/60 backdrop-blur-sm text-white shadow z-50">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+          <h1
+            className="text-xl sm:text-2xl flex items-center space-x-2 cursor-pointer"
+            onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <Image src="/images/shatayu-logo.png" alt="Shatayu Logo" width={40} height={40} />
             <span>Shatayu</span>
           </h1>
-          <div className="space-x-6">
+
+          {/* Hamburger Icon */}
+          <button
+            className="sm:hidden focus:outline-none"
+            onClick={() => setShowMenu((prev) => !prev)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          {/* Desktop Nav */}
+          <div className="hidden sm:flex space-x-6">
             <a className="cursor-pointer" onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })}>Home</a>
             <a className="cursor-pointer" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>About Us</a>
             <a className="cursor-pointer" onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}>Products</a>
           </div>
         </div>
+
+        {/* Mobile Nav Dropdown */}
+        {showMenu && (
+          <div className="sm:hidden bg-green-900 px-4 pb-4 pt-2 text-sm space-y-2">
+            <a className="block cursor-pointer" onClick={() => { setShowMenu(false); document.getElementById("home")?.scrollIntoView({ behavior: "smooth" }); }}>Home</a>
+            <a className="block cursor-pointer" onClick={() => { setShowMenu(false); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}>About Us</a>
+            <a className="block cursor-pointer" onClick={() => { setShowMenu(false); document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }); }}>Products</a>
+          </div>
+        )}
       </nav>
 
-      <section id="home" className="relative h-screen flex items-center justify-center pt-20">
-        <div className="absolute inset-0 bg-[url('/images/bg-leaves.webp')] bg-cover bg-center opacity-90 z-0"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-6xl text-amber-100 mb-4 font-mono whitespace-nowrap">
-            Welcome to <span className="border-r-2 border-amber-100 ">{displayedText}</span>
+
+      {/* Hero Section */}
+      <section id="home" className="relative h-screen flex items-center justify-center pt-20 text-center">
+        <div className="absolute inset-0 bg-[url('/images/bg-leaves.webp')] bg-cover bg-center opacity-90"></div>
+        <div className="relative z-10 px-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl text-amber-100 font-mono mb-4">
+            Welcome to <span className="border-r-2 border-amber-100">{displayedText}</span>
           </h1>
-          <p className="text-xl mb-6">Pure, organic, and locally sourced products for a healthier life.</p>
-          <button onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} className="bg-green-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 cursor-pointer">
+          <p className="text-base sm:text-lg mb-6">Pure, organic, and locally sourced products for a healthier life.</p>
+          <button
+            onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
+            className="bg-green-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-800 transition"
+          >
             Explore Products
           </button>
         </div>
       </section>
 
-      <section id="about" className="py-20 bg-green-100 px-4 relative h-screen flex items-center justify-center pt-20">
+      {/* About Us */}
+      <section id="about" className="py-20 px-4 bg-green-100 text-gray-900">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
-          {/* Left: Image */}
-          <div style={{ position: "relative", width: "550px", height: "550px" }}>
+          <div className="relative w-full md:w-1/2 h-64 sm:h-80 md:h-[550px]">
             <Image
               src="/images/shatayu-logo.png"
               alt="Shatayu Logo"
               fill
-              style={{ objectFit: "contain" }}
+              className="object-contain"
             />
           </div>
-
-          {/* Right: Text */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            <h3 className="text-3xl font-bold text-green-800 mb-6">About Us</h3>
-            <p className="text-lg text-gray-700">
-              At Shatayu Organics, we believe that true health begins with what we consume. 
-              Our mission is to make pure, chemical-free, and sustainably sourced food accessible to every home. 
-              <br />
-              We proudly source our ingredients locally to ensure freshness and support organic living in every bite.
+            <h3 className="text-2xl sm:text-3xl font-bold text-green-800 mb-4">About Us</h3>
+            <p className="text-base sm:text-lg">
+              At Shatayu Organics, we believe that true health begins with what we consume.
+              Our mission is to make pure, chemical-free, and sustainably sourced food accessible to every home.
+              We proudly source our ingredients locally to ensure freshness and support organic living in every bite.
             </p>
           </div>
         </div>
       </section>
 
-
-      <section id="products" className="py-20 bg-white px-4">
+      {/* Products */}
+      <section id="products" className="py-20 px-4 bg-white text-gray-900">
         <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-3xl font-bold text-green-800 mb-10">Our Products</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <h3 className="text-3xl font-bold text-green-700 mb-10">Our Products</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {products.map((product, idx) => (
               <ProductCard key={idx} {...product} onClick={() => setSelectedProduct(product)} />
             ))}
@@ -133,26 +159,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30" onClick={closePopup}>
-          <div className="bg-white rounded-lg p-6 max-w-md w-full relative z-10" onClick={e => e.stopPropagation()}>
-            <h2 className="text-2xl font-bold text-green-800 mb-4">{selectedProduct.name}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/40" onClick={closePopup}>
+          <div
+            className="bg-white text-gray-900 rounded-lg p-5 sm:p-6 max-w-md w-full relative z-10 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-xl sm:text-2xl font-bold text-green-700 mb-4">
+              {selectedProduct.name}
+            </h2>
             <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay>
               {selectedProduct.images.map((src, idx) => (
-                <div key={idx} className="relative w-full h-60">
+                <div key={idx} className="relative w-full h-48 sm:h-60">
                   <Image src={src} alt={selectedProduct.name} fill className="object-cover rounded" />
                 </div>
               ))}
             </Carousel>
-            <p className="mt-4 text-gray-700"><strong>Ingredients:</strong> {selectedProduct.ingredients}</p>
-            <p className="text-green-700 font-semibold my-2"><strong>Price:</strong> {selectedProduct.price}</p>
-            <a href={selectedProduct.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
+            <p className="mt-4 text-sm sm:text-base">
+              <strong>Ingredients:</strong> {selectedProduct.ingredients}
+            </p>
+            <p className="text-green-800 font-medium my-2">
+              <strong>Price:</strong> {selectedProduct.price}
+            </p>
+            <a
+              href={selectedProduct.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-4 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded transition"
+            >
               <ShoppingBagIcon className="h-5 w-5 text-white" />
               Order Now on WhatsApp
             </a>
           </div>
         </div>
       )}
+
 
       <footer className="bg-green-800 text-white text-center py-6">
         <p>&copy; 2025 Shatayu. All rights reserved.</p>
