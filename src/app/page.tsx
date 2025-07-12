@@ -36,7 +36,17 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, wordIndex]);
 
-  const products = [
+  type Product = {
+    name: string;
+    description: string;
+    price: string;
+    image: string;
+    images: string[];
+    variants: string;
+    whatsapp: string;
+  };
+
+  const products: Product[] = [
     {
       name: 'Awla Juice',
       description: 'A nourishing herbal drink infused with Awla and Ayurvedic botanicals, designed to energize your mornings and support immunity from the inside out.',
@@ -59,7 +69,7 @@ export default function HomePage() {
       name: 'Cookies',
       description: 'We have a range of wholesome, easy-to-digest cookies, crafted so you can indulge without the guilt',
       price: '₹170 (250 gms)',
-      image: '/images/image.png',
+      image: '/images/cookies.png',
       images: ['/images/cookies.png', '/images/shatayu-logo.png'],
       variants:'Raagi/Multigrain/Wheat/Oats',
       whatsapp: 'https://wa.me/9421022555?text=I would like to order Cookies'
@@ -296,8 +306,6 @@ export default function HomePage() {
         &copy; {new Date().getFullYear()} Shatayu Organics. All rights reserved.
       </div>
     </footer>
-
-
 
     <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js" defer></script>
     <script src="https://files.bpcontent.cloud/2025/06/20/17/20250620171624-KSBC4V86.js" defer></script>
