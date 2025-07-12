@@ -11,6 +11,11 @@ const lora = Lora({
 export const metadata = {
   title: 'Shatayu - Organic Living',
   description: 'Pure organic products for a healthier life',
+  icons:{
+    icon: '/images/favicon.png',
+    source: '/images/favicon.png',
+    apple: '/images/favicon.png'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -8,8 +8,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export default function HomePage() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  type Product = {
+    name: string;
+    description: string;
+    price: string;
+    image: string;
+    images: string[];
+    variants: string;
+    whatsapp: string;
+  };
+
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const words = ['Shatayu Organics', 'Organic Living'];
   const [displayedText, setDisplayedText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
@@ -36,17 +46,7 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, wordIndex]);
 
-  type Product = {
-    name: string;
-    description: string;
-    price: string;
-    image: string;
-    images: string[];
-    variants: string;
-    whatsapp: string;
-  };
-
-  const products: Product[] = [
+    const products: Product[] = [
     {
       name: 'Awla Juice',
       description: 'A nourishing herbal drink infused with Awla and Ayurvedic botanicals, designed to energize your mornings and support immunity from the inside out.',
