@@ -275,7 +275,7 @@ export default function HomePage() {
         <div className="flex flex-col items-center md:items-start">
           <h3 className="font-semibold mb-3 text-lg">Contact Us</h3>
           <p className="text-sm text-green-200 mb-2">Email: <a href="mailto:shatayuorganics@gmail.com" className="underline">shatayuorganics@gmail.com</a></p>
-          <p className="text-sm text-green-200 mb-4">Phone: <a href="tel:+9421022555" className="underline">+91 9359231049</a></p>
+          <p className="text-sm text-green-200 mb-4">Phone: <a href="tel:+9421022555" className="underline">+91 9421022555</a></p>
 
           <div className="flex items-center gap-4 mt-2">
             <a
@@ -314,7 +314,15 @@ export default function HomePage() {
   );
 }
 
-const ProductCard = ({ name, price, image, onClick }) => {
+
+type ProductCardProps = {
+  name: string;
+  price: string;
+  image: string;
+  onClick: () => void;
+};
+
+const ProductCard = ({ name, price, image, onClick }: ProductCardProps) => {
   return (
     <div
       onClick={onClick}
