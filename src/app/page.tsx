@@ -54,7 +54,7 @@ export default function HomePage() {
       image: '/images/awla-juice.png',
       images: ['/images/awla-juice.png', '/images/awla-sticker.jpg', '/images/shatayu-logo.png'],
       variants: '500ml and 1000ml',
-      whatsapp: 'https://wa.me/9421022555?text=I would like to order Awla Juice'
+      whatsapp: 'https://wa.me/7387623455?text=I would like to order Awla Juice'
     },
     {
       name: 'Sweetol',
@@ -63,16 +63,16 @@ export default function HomePage() {
       image: '/images/sweetol.png',
       images: ['/images/sweetol.png', '/images/shatayu-logo.png'],
       variants: '30ml',
-      whatsapp: 'https://wa.me/9421022555?text=I would like to order Sweetol'
+      whatsapp: 'https://wa.me/7387623455?text=I would like to order Sweetol'
     },
     {
       name: 'Cookies',
-      description: 'We have a range of wholesome, easy-to-digest cookies, crafted so you can indulge without the guilt',
+      description: 'We have a range of wholesome, easy-to-digest, sugar-free cookies, crafted so you can indulge without the guilt',
       price: '₹170 (250 gms)',
       image: '/images/cookies.png',
       images: ['/images/cookies.png', '/images/shatayu-logo.png'],
       variants:'Raagi/Multigrain/Wheat/Oats',
-      whatsapp: 'https://wa.me/9421022555?text=I would like to order Cookies'
+      whatsapp: 'https://wa.me/7387623455?text=I would like to order Cookies'
     },
     {
       name: 'Awla Candy',
@@ -81,7 +81,7 @@ export default function HomePage() {
       image: '/images/awla-candy2.jpg',
       images: ['/images/awla-candy2.jpg', '/images/shatayu-logo.png'],
       variants: 'Sweet/Digestive',
-      whatsapp: 'https://wa.me/9421022555?text=I would like to order Awla Candy'
+      whatsapp: 'https://wa.me/7387623455?text=I would like to order Awla Candy'
     }
   ];
   
@@ -275,11 +275,11 @@ export default function HomePage() {
         <div className="flex flex-col items-center md:items-start">
           <h3 className="font-semibold mb-3 text-lg">Contact Us</h3>
           <p className="text-sm text-green-200 mb-2">Email: <a href="mailto:shatayuorganics@gmail.com" className="underline">shatayuorganics@gmail.com</a></p>
-          <p className="text-sm text-green-200 mb-4">Phone: <a href="tel:+9421022555" className="underline">+91 9421022555</a></p>
+          <p className="text-sm text-green-200 mb-4">Phone: <a href="tel:+7387623455" className="underline">+91 7387623455</a></p>
 
           <div className="flex items-center gap-4 mt-2">
             <a
-              href="https://wa.me/9421022555"
+              href="https://wa.me/7387623455"
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-400 hover:text-green-500 transition"
