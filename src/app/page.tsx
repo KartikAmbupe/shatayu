@@ -19,6 +19,23 @@ export default function HomePage() {
     whatsapp: string;
   };
 
+  type Review = {
+    name: string;
+    review: string;
+  };
+
+  const reviews: Review[] = [
+    {
+      name: ' Shivanjali Shinde (CA)',
+      review: '"I recently tried the Shatayu sweetener in my coffee, and I was pleasantly surprised. It strikes the perfect balance not too sweet, not too bland. It blends smoothly without altering the flavor of my coffee, and I love that it doesn’t leave any weird aftertaste. Definitely a great alternative for anyone looking to cut down on sugar without compromising on taste."',
+    },
+    {
+      name: 'Mrunmai Deshmukh (Corporate employee)',
+      review: '"Your cookies are genuinely the best mix of taste and health. I am going to order 5-8 of boxes this Diwali to gift my relatives. 😊"',
+    },
+  ];
+
+
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const words = ['Shatayu Organics', 'Organic Living'];
   const [displayedText, setDisplayedText] = useState('');
@@ -235,7 +252,28 @@ export default function HomePage() {
         </div>
       </div>
     )}
-
+    
+    {/* Testimonials */}
+    <section id="testimonials" className="py-20 px-4 bg-green-100 text-gray-900">
+      <div className="max-w-6xl mx-auto text-center">
+        <h3 className="text-3xl font-bold text-green-700 mb-10">What Our Customers Say</h3>
+        <Carousel
+          showThumbs={false}
+          showStatus={false}
+          infiniteLoop
+          autoPlay
+          interval={4000}
+          showArrows={true}
+          className="cursor-grab"
+        >
+          {reviews.map((review, idx) => (
+            <div key={idx} className="pb-10 flex justify-center">
+              <ReviewCard {...review} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
+    </section>
 
     <footer className="bg-green-900 text-white px-6 py-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -345,3 +383,20 @@ const ProductCard = ({ name, price, image, onClick }: ProductCardProps) => {
   );
 };
 
+type ReviewCardProps = {
+  name: string;
+  review: string;
+};
+
+const ReviewCard = ({ name, review }: ReviewCardProps) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-8 mx-4 max-w-lg">
+      <p className="text-gray-700 text-lg italic mb-6">
+        {review}
+      </p>
+      <p className="text-right font-semibold text-green-800 text-md">
+        ~ {name}
+      </p>
+    </div>
+  );
+};
