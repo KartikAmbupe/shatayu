@@ -31,7 +31,7 @@ export default function HomePage() {
     },
     {
       name: 'Mrunmai Deshmukh (Corporate employee)',
-      review: '"Your cookies are genuinely the best mix of taste and health. I am going to order 5-8 of boxes this Diwali to gift my relatives. 😊"',
+      review: '"Your cookies are genuinely the best mix of taste and health. I liked them so much that I’ve chosen them as gifts for my relatives this Diwali. 😊"',
     },
   ];
 
@@ -256,14 +256,17 @@ export default function HomePage() {
     {/* Testimonials */}
     <section id="testimonials" className="py-20 px-4 bg-green-100 text-gray-900">
       <div className="max-w-6xl mx-auto text-center">
-        <h3 className="text-3xl font-bold text-green-700 mb-10">What Our Customers Say</h3>
+        <h3 className="text-3xl font-bold text-green-700 mb-10">What Our Customers Say...</h3>
         <Carousel
           showThumbs={false}
           showStatus={false}
           infiniteLoop
           autoPlay
-          interval={4000}
-          showArrows={true}
+          interval={5000}
+          showArrows={false}
+          swipeable={false}
+          stopOnHover={false}
+          emulateTouch={false}
           className="cursor-grab"
         >
           {reviews.map((review, idx) => (
